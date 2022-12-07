@@ -1,0 +1,43 @@
+version: '3.7'
+services:
+  oryeqrzh-db:
+    container_name: oryeqrzh-db
+    image: mysql
+    networks:
+      - oryeqrzh-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=oryeqrzh
+    volumes:
+      - type: bind
+        source: mysql
+        target: /var/lib/mysql
+    ports:
+      - "3307:3306"
+    restart: always
+
+  oryeqrzh-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: oryeqrzh-spring
+    image: oryeqrzh-spring:latest
+    ports:
+      - "8081:8080"
+    networks:
+      - oryeqrzh-network
+    depends_on:
+      - oryeqrzh-db
+    environment:
+      - MYSQL_HOST=oryeqrzh-db
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=oryeqrzh
+
+networks:
+  oryeqrzh-network:
+    name: oryeqrzh-network
+
+volumes:
+  src:

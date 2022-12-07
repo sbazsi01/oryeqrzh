@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">Cars</title>
+    <link rel="icon" href="data:,">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+<h1 class="text-center">Cars</h1>
+<div class="offset-3">
+    <a class="btn btn-success my-2" th:href="@{/showcreateform}">Add new car</a>
+
+</div>
+<article class="col-6 offset-3"   th:each="car : ${cars}">
+    <div class="card">
+
+        <section class="card-body">
+            <p><span style="font-weight:bold">Gyártó:</span>
+            <span th:text="${car.brand}">Brand</span>
+            </p>
+            <p><span style="font-weight:bold">Típus:</span>
+            <span th:text="${car.model}">Model</span>
+            </p>
+            <p><span style="font-weight:bold">Lóerő:</span>
+            <span th:text="${car.hp}">Horse power</span>
+            </p>
+        </section>
+    </div>
+    <div class="d-inline" >
+        <a class="btn border btn-primary my-2" th:href="@{/showformupdate/{id}(id=${car.id})}">Update</a>
+        <a class="btn border-2 btn-danger my-2" th:href="@{/delete/{id}(id=${car.id})}">Delete</a>
+        <a class="btn border-2 btn-secondary my-2" th:href="@{/{id}(id=${car.id})}">Show</a>
+    </div>
+</article>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</html>
