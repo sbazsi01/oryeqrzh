@@ -30,6 +30,7 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=password
       - MYSQL_DATABASE=oryeqrzh
+    restart: always
 
 networks:
   oryeqrzh-network:
