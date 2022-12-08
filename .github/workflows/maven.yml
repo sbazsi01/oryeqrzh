@@ -27,6 +27,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
     - name: Build the stack
-      run: docker-compose up -f docker-compose-ci.yml
+      run: docker-compose -f docker-compose-ci.yml up
     - name: Verify with Maven
       run: mvn -B verify
