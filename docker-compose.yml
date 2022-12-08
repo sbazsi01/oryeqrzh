@@ -10,7 +10,7 @@ services:
       - MYSQL_DATABASE=oryeqrzh
     volumes:
       - type: bind
-        source: mysql
+        source: ./mysql
         target: /var/lib/mysql
     ports:
       - "3307:3306"
